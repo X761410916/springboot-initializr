@@ -1,0 +1,46 @@
+#主配置文件 : 1.配置两个环境共用的配置 2.选择激活哪个环境的配置文件
+server:
+  #port: 9911
+  servlet:
+    context-path: /initializr
+    jsp:
+      init-parameters:
+        development: true #development 固定写死支持jsp热部署
+
+spring:
+  datasource: #数据源
+    username: root
+    password: 19991102
+    driver-class-name: com.mysql.cj.jdbc.Driver #驱动
+    url: jdbc:mysql://192.168.37.112:8066/mycat
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  mvc:  #配置视图解析器
+    view:
+      prefix: /
+      suffix: .jsp
+    date-format: yyyy-MM-dd #设置Date类型的接收方式
+
+  profiles: #选择要激活的子配置文件
+    active: test
+
+  servlet:  #设置文件上传大小
+    multipart:
+      max-file-size: 10MB       #上传单个文件大小 默认 1MB
+      max-request-size: 100MB   #上传多个文件大小 默认 10MB
+  jackson:
+    date-format: yyyy-MM-dd     #设置时间类型展示格式
+    time-zone: GMT+8            #设置时区
+#Spring Mybatis设置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.baizhi.entity
+logging:
+  level:
+    root: INFO  #根日志
+    com.baizhi.dao: DEBUG
+  file: D:/IDEAWork/log/initializrLog.txt     #日志文件输出位置
+  #path: D:/IDEAWork/log           #指定日志存放路径
+  pattern:      #自定义布局
+    console: '[%p] %d{yyyy-MM-dd HH:mm:ss} %m %n'        #控制台布局
+    file: '[%p] %d{yyyy-MM-dd HH:mm:ss} %m %n'           #文件布局
