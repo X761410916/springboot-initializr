@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ImportResource;
 * 扫描dao
 * */
 @MapperScan("com.baizhi.dao")
-/*主入ssssss口类*/
+/*主入口类*/
 public class App {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
